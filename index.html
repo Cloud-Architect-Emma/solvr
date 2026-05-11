@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Solvr — Deal Execution Platform for SA & SE Teams</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #1D9E75;
+    --green-light: #E1F5EE;
+    --green-mid: #9FE1CB;
+    --green-dark: #0F6E56;
+    --green-deep: #085041;
+    --surface: #F7F8F6;
+    --surface2: #EEEEED;
+    --border: rgba(0,0,0,0.09);
+    --border2: rgba(0,0,0,0.15);
+    --text: #1A1A18;
+    --text2: #5A5A56;
+    --text3: #9A9A96;
+    --white: #ffffff;
+    --amber: #EF9F27;
+    --amber-light: #FAEEDA;
+    --coral: #D85A30;
+    --coral-light: #FAECE7;
+    --purple: #534AB7;
+    --purple-light: #EEEDFE;
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --radius: 10px;
+    --radius-lg: 14px;
+  }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Landing ── */
+  .landing {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .landing::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 20% 20%, rgba(29,158,117,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(29,158,117,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .landing-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--text);
+    margin-bottom: 48px;
+    letter-spacing: -0.01em;
+  }
+  .landing-logo-mark {
+    width: 36px; height: 36px;
+    background: var(--green);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .landing-logo-mark i { font-size: 18px; color: white; }
+
+  .landing-eyebrow {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--green);
+    background: var(--green-light);
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+
+  .landing-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1.1;
+    color: var(--text);
+    max-width: 720px;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .landing-h1 em { color: var(--green); font-style: italic; }
+
+  .landing-sub {
+    font-size: 17px;
+    color: var(--text2);
+    max-width: 520px;
+    margin-bottom: 36px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .landing-cta-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 26px;
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: 14px; font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    text-decoration: none;
+  }
+  .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); }
+  .btn-primary:active { transform: scale(0.98); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 26px;
+    background: transparent;
+    color: var(--text2);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: 14px; font-weight: 400;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    text-decoration: none;
+  }
+  .btn-ghost:hover { background: var(--white); color: var(--text); }
+
+  .landing-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    max-width: 760px;
+    width: 100%;
+    margin-bottom: 48px;
+  }
+  .feat-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    text-align: left;
+  }
+  .feat-icon { font-size: 20px; color: var(--green); margin-bottom: 8px; }
+  .feat-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .feat-desc { font-size: 12px; color: var(--text3); line-height: 1.5; }
+
+  .landing-footer {
+    font-size: 12px; color: var(--text3);
+  }
+
+  /* ── App shell ── */
+  .app-shell { display: none; height: 100vh; flex-direction: column; }
+  .app-shell.visible { display: flex; }
+
+  /* topbar */
+  .topbar {
+    height: 52px;
+    display: flex; align-items: center;
+    padding: 0 16px;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    gap: 14px;
+    flex-shrink: 0;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .app-logo {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--font-display);
+    font-size: 18px; color: var(--text);
+    text-decoration: none;
+  }
+  .app-logo-mark {
+    width: 28px; height: 28px;
+    background: var(--green);
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .app-logo-mark i { font-size: 14px; color: white; }
+
+  .topbar-divider { width: 1px; height: 20px; background: var(--border); }
+
+  .deal-breadcrumb { font-size: 13px; color: var(--text2); }
+  .deal-breadcrumb strong { color: var(--text); font-weight: 500; }
+
+  .stage-pill {
+    font-size: 11px; font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    letter-spacing: 0.02em;
+  }
+
+  .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+  .avatars { display: flex; }
+  .av {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 600;
+    border: 2px solid var(--white);
+  }
+  .av + .av { margin-left: -8px; }
+  .av-ae { background: var(--purple-light); color: var(--purple); }
+  .av-se { background: var(--green-light); color: var(--green-dark); }
+  .av-sa { background: var(--coral-light); color: var(--coral); }
+
+  /* main layout */
+  .workspace {
+    display: grid;
+    grid-template-columns: 210px 1fr 250px;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* sidebar */
+  .sidebar {
+    border-right: 1px solid var(--border);
+    background: var(--white);
+    overflow-y: auto;
+    padding: 16px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sb-label {
+    font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--text3);
+    padding: 0 8px;
+    margin-bottom: 4px;
+  }
+
+  .stage-nav { display: flex; flex-direction: column; gap: 2px; }
+  .stage-btn {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 13px; font-weight: 400;
+    color: var(--text2);
+    border: none; background: transparent;
+    text-align: left; width: 100%;
+    transition: background 0.12s, color 0.12s;
+    font-family: var(--font-body);
+  }
+  .stage-btn:hover { background: var(--surface); color: var(--text); }
+  .stage-btn.active {
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-weight: 500;
+  }
+  .stage-btn.done { color: var(--text3); }
+
+  .snum {
+    width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 600;
+    background: var(--surface2);
+    color: var(--text3);
+    flex-shrink: 0;
+  }
+  .snum.done { background: var(--green-light); color: var(--green-dark); }
+  .snum.active { background: var(--green); color: white; }
+
+  /* health */
+  .health-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+  }
+  .health-score-val { font-size: 28px; font-weight: 600; color: var(--green); line-height: 1; }
+  .health-label { font-size: 11px; color: var(--text3); margin-top: 2px; }
+  .health-bar { height: 4px; background: var(--surface2); border-radius: 4px; margin-top: 10px; overflow: hidden; }
+  .health-fill { height: 100%; background: var(--green); border-radius: 4px; transition: width 0.5s ease; }
+
+  .deal-meta { display: flex; flex-direction: column; gap: 6px; padding: 0 4px; }
+  .meta-row { display: flex; justify-content: space-between; font-size: 12px; }
+  .meta-key { color: var(--text3); }
+  .meta-val { font-weight: 500; color: var(--text); }
+
+  /* main panel */
+  .main-panel { overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+
+  .panel-header {}
+  .panel-title { font-size: 18px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .panel-sub { font-size: 13px; color: var(--text2); }
+
+  /* deal context cards */
+  .context-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+  .ctx-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+  }
+  .ctx-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px; }
+  .ctx-val { font-size: 13px; font-weight: 500; color: var(--text); }
+
+  /* input area */
+  .input-section {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .input-inner { display: flex; gap: 0; }
+  .main-input {
+    flex: 1; font-size: 14px;
+    padding: 14px 16px;
+    border: none; outline: none;
+    background: transparent;
+    color: var(--text);
+    font-family: var(--font-body);
+    resize: none;
+    min-height: 52px;
+    max-height: 120px;
+  }
+  .main-input::placeholder { color: var(--text3); }
+  .gen-btn {
+    display: flex; align-items: center; gap: 7px;
+    padding: 0 20px;
+    background: var(--green);
+    color: white;
+    border: none;
+    font-size: 13px; font-weight: 500;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .gen-btn:hover { background: var(--green-dark); }
+  .gen-btn:disabled { background: var(--text3); cursor: not-allowed; }
+  .gen-btn i { font-size: 15px; }
+
+  /* output area */
+  .output-box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .output-header {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    background: #F9FBF9;
+  }
+  .ai-indicator {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green);
+  }
+  .ai-indicator.pulsing { animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .output-label { font-size: 11px; font-weight: 600; color: var(--green-dark); text-transform: uppercase; letter-spacing: 0.08em; }
+  .output-body {
+    padding: 20px;
+    min-height: 120px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.75;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .output-placeholder {
+    color: var(--text3);
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  /* pain tags */
+  .tags-row { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    font-size: 12px; padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border2);
+    color: var(--text2);
+    background: var(--white);
+  }
+  .tag.high { background: var(--coral-light); color: var(--coral); border-color: #F5C4B3; }
+  .tag.med { background: var(--amber-light); color: #854F0B; border-color: #FAC775; }
+
+  /* tabs */
+  .tabs { display: flex; border-bottom: 1px solid var(--border); background: var(--white); border-radius: var(--radius) var(--radius) 0 0; }
+  .tab-btn {
+    padding: 10px 16px;
+    font-size: 13px; font-weight: 400;
+    color: var(--text3);
+    border: none; background: transparent;
+    cursor: pointer; border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    font-family: var(--font-body);
+    transition: color 0.12s;
+  }
+  .tab-btn.active { color: var(--green); border-bottom-color: var(--green); font-weight: 500; }
+  .tab-btn:hover { color: var(--text); }
+
+  /* right panel */
+  .right-panel {
+    border-left: 1px solid var(--border);
+    background: var(--white);
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .rp-section {}
+  .rp-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 10px; }
+
+  /* team */
+  .team-list { display: flex; flex-direction: column; gap: 1px; }
+  .team-member {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .team-member:last-child { border-bottom: none; }
+  .mem-av {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 600; flex-shrink: 0;
+  }
+  .mem-name { font-size: 13px; font-weight: 500; }
+  .mem-role { font-size: 11px; color: var(--text3); }
+  .role-chip {
+    margin-left: auto;
+    font-size: 10px; font-weight: 600;
+    padding: 2px 8px; border-radius: 20px;
+  }
+
+  /* activity */
+  .activity-list { display: flex; flex-direction: column; gap: 12px; }
+  .act {
+    display: flex; gap: 9px; align-items: flex-start;
+  }
+  .act-icon {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--surface);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .act-icon i { font-size: 13px; }
+  .act-text { font-size: 12px; color: var(--text2); line-height: 1.5; }
+  .act-text strong { color: var(--text); font-weight: 500; }
+  .act-time { font-size: 11px; color: var(--text3); margin-top: 1px; }
+
+  /* stage advance */
+  .advance-btn {
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+    width: 100%; padding: 10px;
+    border-radius: var(--radius);
+    border: 1px solid var(--green);
+    background: transparent;
+    color: var(--green);
+    font-size: 13px; font-weight: 500;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: background 0.15s, color 0.15s;
+  }
+  .advance-btn:hover { background: var(--green-light); }
+
+  /* section separator */
+  .section-sep { display: flex; flex-direction: column; gap: 8px; }
+
+  /* loading shimmer */
+  @keyframes shimmer {
+    0% { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+  }
+  .shimmer {
+    background: linear-gradient(90deg, var(--surface) 25%, var(--surface2) 50%, var(--surface) 75%);
+    background-size: 800px 100%;
+    animation: shimmer 1.4s infinite;
+    border-radius: 4px;
+    height: 14px;
+    margin-bottom: 8px;
+  }
+
+  /* stage content panels */
+  .stage-panel { display: none; flex-direction: column; gap: 20px; }
+  .stage-panel.active { display: flex; }
+
+  /* onboarding form */
+  .onboard-form {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .form-title { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+  .form-sub { font-size: 13px; color: var(--text2); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-group label { font-size: 12px; font-weight: 500; color: var(--text2); }
+  .form-group input, .form-group select, .form-group textarea {
+    padding: 9px 12px;
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-family: var(--font-body);
+    color: var(--text);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--green);
+  }
+  .form-group textarea { min-height: 80px; resize: vertical; }
+  .form-group.full { grid-column: 1 / -1; }
+
+  /* responsive */
+  @media (max-width: 900px) {
+    .workspace { grid-template-columns: 180px 1fr; }
+    .right-panel { display: none; }
+  }
+  @media (max-width: 640px) {
+    .workspace { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .main-panel { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── LANDING ── -->
+<div class="landing" id="landing">
+  <div class="landing-logo">
+    <div class="landing-logo-mark"><i class="ti ti-topology-star-3"></i></div>
+    Solvr
+  </div>
+
+  <div class="landing-eyebrow">Early access demo</div>
+
+  <h1 class="landing-h1">
+    Win more deals with<br/><em>intelligent</em> pre-sales execution
+  </h1>
+
+  <p class="landing-sub">
+    The deal workspace for Sales, Solutions Engineers, and Solutions Architects — AI-powered discovery, PoC planning, demo scripting, and proposal generation in one place.
+  </p>
+
+  <div class="landing-cta-group">
+    <button class="btn-primary" onclick="startDemo()">
+      <i class="ti ti-player-play"></i>
+      Try the demo
+    </button>
+    <a class="btn-ghost" href="https://www.linkedin.com/in/emmanuela-opurum" target="_blank">
+      <i class="ti ti-brand-linkedin"></i>
+      Follow the build
+    </a>
+  </div>
+
+  <div class="landing-features">
+    <div class="feat-card">
+      <div class="feat-icon"><i class="ti ti-search"></i></div>
+      <div class="feat-title">Discovery engine</div>
+      <div class="feat-desc">AI generates tailored discovery questions from client context</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><i class="ti ti-flask"></i></div>
+      <div class="feat-title">PoC planner</div>
+      <div class="feat-desc">Define success criteria, scope, and timeline — automatically</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><i class="ti ti-presentation"></i></div>
+      <div class="feat-title">Demo builder</div>
+      <div class="feat-desc">Client-contextualised demo scripts that actually land</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><i class="ti ti-file-text"></i></div>
+      <div class="feat-title">Proposal generator</div>
+      <div class="feat-desc">Technical proposals from discovery data — ready to send</div>
+    </div>
+  </div>
+
+  <div class="landing-footer">Built by <strong>Emmanuela Opurum</strong> · Solutions Architect & Cloud Engineer · London 🇬🇧</div>
+</div>
+
+<!-- ── APP SHELL ── -->
+<div class="app-shell" id="appShell">
+
+  <div class="topbar">
+    <a href="#" class="app-logo" onclick="goHome()">
+      <div class="app-logo-mark"><i class="ti ti-topology-star-3"></i></div>
+      Solvr
+    </a>
+    <div class="topbar-divider"></div>
+    <div class="deal-breadcrumb">Deal — <strong id="dealNameTop">New deal</strong></div>
+    <div class="stage-pill" id="stagePill">Discovery</div>
+    <div class="topbar-right">
+      <div class="avatars">
+        <div class="av av-ae" title="Account Executive">JO</div>
+        <div class="av av-se" title="Solutions Engineer">PS</div>
+        <div class="av av-sa" title="Solutions Architect">KL</div>
+      </div>
+      <div class="topbar-divider"></div>
+      <i class="ti ti-bell" style="font-size:16px; color:var(--text3); cursor:pointer;"></i>
+    </div>
+  </div>
+
+  <div class="workspace">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div>
+        <div class="sb-label">Workflow</div>
+        <div class="stage-nav">
+          <button class="stage-btn done" onclick="goStage(0)">
+            <div class="snum done"><i class="ti ti-check" style="font-size:10px;"></i></div>
+            Qualification
+          </button>
+          <button class="stage-btn active" id="nav-1" onclick="goStage(1)">
+            <div class="snum active" id="snum-1">2</div>
+            Discovery
+          </button>
+          <button class="stage-btn" id="nav-2" onclick="goStage(2)">
+            <div class="snum" id="snum-2">3</div>
+            PoC / PoV planner
+          </button>
+          <button class="stage-btn" id="nav-3" onclick="goStage(3)">
+            <div class="snum" id="snum-3">4</div>
+            Demo builder
+          </button>
+          <button class="stage-btn" id="nav-4" onclick="goStage(4)">
+            <div class="snum" id="snum-4">5</div>
+            Proposal generator
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <div class="sb-label">Deal health</div>
+        <div class="health-card">
+          <div class="health-score-val">74%</div>
+          <div class="health-label">Strong technical fit</div>
+          <div class="health-bar"><div class="health-fill" style="width:74%"></div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sb-label">Deal info</div>
+        <div class="deal-meta">
+          <div class="meta-row"><span class="meta-key">ACV</span><span class="meta-val" id="meta-acv">—</span></div>
+          <div class="meta-row"><span class="meta-key">Industry</span><span class="meta-val" id="meta-industry">—</span></div>
+          <div class="meta-row"><span class="meta-key">Size</span><span class="meta-val" id="meta-size">—</span></div>
+          <div class="meta-row"><span class="meta-key">Stage</span><span class="meta-val" id="meta-stage">2 of 5</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main panel -->
+    <div class="main-panel" id="mainPanel">
+
+      <!-- Stage 1: Discovery -->
+      <div class="stage-panel active" id="panel-1">
+        <div class="panel-header">
+          <div class="panel-title">Discovery engine</div>
+          <div class="panel-sub" id="disc-sub">AI-generated discovery questions tailored to your client</div>
+        </div>
+
+        <div class="context-grid" id="ctx-grid">
+          <div class="ctx-card"><div class="ctx-label">Company</div><div class="ctx-val" id="ctx-company">—</div></div>
+          <div class="ctx-card"><div class="ctx-label">Industry</div><div class="ctx-val" id="ctx-industry">—</div></div>
+          <div class="ctx-card"><div class="ctx-label">Tech stack</div><div class="ctx-val" id="ctx-stack">—</div></div>
+          <div class="ctx-card"><div class="ctx-label">Pain area</div><div class="ctx-val" id="ctx-pain">—</div></div>
+        </div>
+
+        <div class="section-sep">
+          <div class="input-section">
+            <div class="input-inner">
+              <textarea class="main-input" id="disc-input" placeholder="Add more context about the client or a specific pain area to focus on…" rows="2"></textarea>
+              <button class="gen-btn" id="disc-btn" onclick="generateDiscovery()">
+                <i class="ti ti-sparkles"></i> Generate questions
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="output-box" id="disc-output-box">
+          <div class="output-header">
+            <div class="ai-indicator" id="disc-indicator"></div>
+            <div class="output-label">AI discovery questions</div>
+          </div>
+          <div class="output-body" id="disc-output">
+            <span class="output-placeholder">Click "Generate questions" to get AI-powered discovery questions tailored to your client profile.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 2: PoC -->
+      <div class="stage-panel" id="panel-2">
+        <div class="panel-header">
+          <div class="panel-title">PoC / PoV planner</div>
+          <div class="panel-sub">Define scope, success criteria, and timeline — ready for client sign-off</div>
+        </div>
+
+        <div class="section-sep">
+          <div class="input-section">
+            <div class="input-inner">
+              <textarea class="main-input" id="poc-input" placeholder="What are the client's main technical objectives for the PoC? Any constraints on timeline or environment?" rows="2"></textarea>
+              <button class="gen-btn" id="poc-btn" onclick="generatePoC()">
+                <i class="ti ti-sparkles"></i> Generate PoC plan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="output-box">
+          <div class="output-header">
+            <div class="ai-indicator" id="poc-indicator"></div>
+            <div class="output-label">PoC plan</div>
+          </div>
+          <div class="output-body" id="poc-output">
+            <span class="output-placeholder">Click "Generate PoC plan" to produce a structured proof-of-concept brief.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 3: Demo -->
+      <div class="stage-panel" id="panel-3">
+        <div class="panel-header">
+          <div class="panel-title">Demo builder</div>
+          <div class="panel-sub">A client-contextualised demo script that hits the moments that matter</div>
+        </div>
+
+        <div class="section-sep">
+          <div class="input-section">
+            <div class="input-inner">
+              <textarea class="main-input" id="demo-input" placeholder="Which product capabilities do you want to highlight? Any specific client stakeholders attending the demo?" rows="2"></textarea>
+              <button class="gen-btn" id="demo-btn" onclick="generateDemo()">
+                <i class="ti ti-sparkles"></i> Build demo script
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="output-box">
+          <div class="output-header">
+            <div class="ai-indicator" id="demo-indicator"></div>
+            <div class="output-label">Demo script</div>
+          </div>
+          <div class="output-body" id="demo-output">
+            <span class="output-placeholder">Click "Build demo script" to generate a tailored demo flow for this client.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 4: Proposal -->
+      <div class="stage-panel" id="panel-4">
+        <div class="panel-header">
+          <div class="panel-title">Proposal generator</div>
+          <div class="panel-sub">Technical proposal synthesised from your discovery and PoC outputs</div>
+        </div>
+
+        <div class="section-sep">
+          <div class="input-section">
+            <div class="input-inner">
+              <textarea class="main-input" id="prop-input" placeholder="Any additional commercial context, specific outcomes to highlight, or sections to include?" rows="2"></textarea>
+              <button class="gen-btn" id="prop-btn" onclick="generateProposal()">
+                <i class="ti ti-sparkles"></i> Generate proposal
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="output-box">
+          <div class="output-header">
+            <div class="ai-indicator" id="prop-indicator"></div>
+            <div class="output-label">Technical proposal</div>
+          </div>
+          <div class="output-body" id="prop-output">
+            <span class="output-placeholder">Click "Generate proposal" to produce a full technical proposal ready to send.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right panel -->
+    <div class="right-panel">
+      <div class="rp-section">
+        <div class="rp-label">Deal team</div>
+        <div class="team-list">
+          <div class="team-member">
+            <div class="mem-av av-ae">JO</div>
+            <div><div class="mem-name">James O.</div><div class="mem-role">Account Executive</div></div>
+            <span class="role-chip" style="background:var(--purple-light);color:var(--purple);">AE</span>
+          </div>
+          <div class="team-member">
+            <div class="mem-av av-se">PS</div>
+            <div><div class="mem-name">Priya S.</div><div class="mem-role">Solutions Engineer</div></div>
+            <span class="role-chip" style="background:var(--green-light);color:var(--green-dark);">SE</span>
+          </div>
+          <div class="team-member">
+            <div class="mem-av av-sa">KL</div>
+            <div><div class="mem-name">Kwame L.</div><div class="mem-role">Solutions Architect</div></div>
+            <span class="role-chip" style="background:var(--coral-light);color:var(--coral);">SA</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rp-section">
+        <div class="rp-label">Pain signals</div>
+        <div class="tags-row" id="pain-tags">
+          <span class="tag high">Cost overrun</span>
+          <span class="tag high">Compliance gap</span>
+          <span class="tag med">Slow provisioning</span>
+          <span class="tag">Shadow IT</span>
+        </div>
+      </div>
+
+      <div class="rp-section">
+        <div class="rp-label">Activity</div>
+        <div class="activity-list" id="activity-list">
+          <div class="act">
+            <div class="act-icon"><i class="ti ti-check" style="color:var(--green);"></i></div>
+            <div>
+              <div class="act-text"><strong>Qualification</strong> completed — score 74%</div>
+              <div class="act-time">Yesterday</div>
+            </div>
+          </div>
+          <div class="act">
+            <div class="act-icon"><i class="ti ti-user" style="color:var(--coral);"></i></div>
+            <div>
+              <div class="act-text"><strong>Kwame</strong> joined as SA</div>
+              <div class="act-time">2 days ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="advance-btn" id="advance-btn" onclick="advanceStage()">
+        <i class="ti ti-arrow-right"></i>
+        <span id="advance-label">Move to PoC planner</span>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── ONBOARDING MODAL ── -->
+<div id="onboard-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:200; align-items:center; justify-content:center;">
+  <div style="background:var(--white); border-radius:var(--radius-lg); padding:32px; max-width:560px; width:90%; max-height:90vh; overflow-y:auto;">
+    <div style="font-family:var(--font-display); font-size:22px; margin-bottom:4px;">Start a new deal</div>
+    <div style="font-size:13px; color:var(--text2); margin-bottom:24px;">Tell Solvr about your client — the AI will tailor everything from here.</div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Company name *</label>
+        <input type="text" id="f-company" placeholder="e.g. Meridian Financial" />
+      </div>
+      <div class="form-group">
+        <label>Industry *</label>
+        <select id="f-industry">
+          <option value="">Select industry</option>
+          <option>Financial services</option>
+          <option>Healthcare</option>
+          <option>Retail & e-commerce</option>
+          <option>Technology / SaaS</option>
+          <option>Manufacturing</option>
+          <option>Government & public sector</option>
+          <option>Energy & utilities</option>
+          <option>Telecoms</option>
+          <option>Media & entertainment</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Company size</label>
+        <select id="f-size">
+          <option value="">Select size</option>
+          <option>Startup (&lt;50)</option>
+          <option>SMB (50–500)</option>
+          <option>Mid-market (500–2,000)</option>
+          <option>Enterprise (2,000+)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Deal ACV (est.)</label>
+        <input type="text" id="f-acv" placeholder="e.g. $240,000" />
+      </div>
+      <div class="form-group full">
+        <label>Tech stack</label>
+        <input type="text" id="f-stack" placeholder="e.g. AWS, Terraform, Kafka, Kubernetes" />
+      </div>
+      <div class="form-group full">
+        <label>Primary pain / challenge *</label>
+        <textarea id="f-pain" placeholder="What is the client trying to solve? What's broken or slow today?"></textarea>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px; margin-top:8px;">
+      <button class="btn-primary" style="flex:1;" onclick="submitDeal()">
+        <i class="ti ti-arrow-right"></i> Open deal workspace
+      </button>
+      <button class="btn-ghost" onclick="closeOnboard()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const API_KEY_PLACEHOLDER = 'YOUR_ANTHROPIC_API_KEY';
+  let dealContext = {};
+  let currentStage = 1;
+  const stageLabels = ['', 'Discovery', 'PoC / PoV', 'Demo builder', 'Proposal'];
+  const advanceLabels = ['', 'Move to PoC planner', 'Move to demo builder', 'Move to proposal generator', 'Deal complete'];
+
+  function startDemo() {
+    document.getElementById('onboard-overlay').style.display = 'flex';
+  }
+
+  function closeOnboard() {
+    document.getElementById('onboard-overlay').style.display = 'none';
+  }
+
+  function goHome() {
+    document.getElementById('appShell').classList.remove('visible');
+    document.getElementById('landing').style.display = 'flex';
+  }
+
+  function submitDeal() {
+    const company = document.getElementById('f-company').value.trim();
+    const industry = document.getElementById('f-industry').value;
+    const pain = document.getElementById('f-pain').value.trim();
+    if (!company || !industry || !pain) {
+      alert('Please fill in company name, industry, and primary pain.');
+      return;
+    }
+    dealContext = {
+      company,
+      industry,
+      size: document.getElementById('f-size').value || 'Unknown',
+      acv: document.getElementById('f-acv').value || '—',
+      stack: document.getElementById('f-stack').value || 'Not specified',
+      pain,
+    };
+
+    document.getElementById('dealNameTop').textContent = company;
+    document.getElementById('ctx-company').textContent = company;
+    document.getElementById('ctx-industry').textContent = industry;
+    document.getElementById('ctx-stack').textContent = dealContext.stack;
+    document.getElementById('ctx-pain').textContent = pain.length > 40 ? pain.slice(0, 40) + '…' : pain;
+    document.getElementById('meta-acv').textContent = dealContext.acv;
+    document.getElementById('meta-industry').textContent = industry;
+    document.getElementById('meta-size').textContent = dealContext.size;
+    document.getElementById('disc-sub').textContent = `AI-generated discovery questions tailored to ${company}`;
+
+    document.getElementById('onboard-overlay').style.display = 'none';
+    document.getElementById('landing').style.display = 'none';
+    document.getElementById('appShell').classList.add('visible');
+
+    addActivity(`Deal opened for <strong>${company}</strong>`, 'ti-building');
+  }
+
+  function goStage(n) {
+    if (n === 0) return;
+    currentStage = n;
+    document.querySelectorAll('.stage-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById(`panel-${n}`).classList.add('active');
+    document.querySelectorAll('.stage-btn').forEach((b, i) => {
+      b.classList.remove('active');
+    });
+    document.querySelectorAll('.stage-btn')[n].classList.add('active');
+    document.getElementById('stagePill').textContent = stageLabels[n];
+    document.getElementById('meta-stage').textContent = `${n + 1} of 5`;
+    document.getElementById('advance-label').textContent = advanceLabels[n];
+    document.getElementById('mainPanel').scrollTop = 0;
+  }
+
+  function advanceStage() {
+    if (currentStage < 4) {
+      const next = currentStage + 1;
+      const snum = document.getElementById(`snum-${next}`);
+      if (snum) { snum.classList.add('active'); }
+      goStage(next);
+    }
+  }
+
+  function addActivity(text, icon) {
+    const list = document.getElementById('activity-list');
+    const div = document.createElement('div');
+    div.className = 'act';
+    div.innerHTML = `
+      <div class="act-icon"><i class="ti ${icon}" style="color:var(--green);"></i></div>
+      <div>
+        <div class="act-text">${text}</div>
+        <div class="act-time">Just now</div>
+      </div>`;
+    list.insertBefore(div, list.firstChild);
+  }
+
+  function buildContext() {
+    return `Client: ${dealContext.company}
+Industry: ${dealContext.industry}
+Company size: ${dealContext.size}
+Tech stack: ${dealContext.stack}
+Primary pain / challenge: ${dealContext.pain}
+Deal ACV: ${dealContext.acv}`;
+  }
+
+  async function callClaude(systemPrompt, userMessage, outputId, indicatorId, btnId) {
+    const output = document.getElementById(outputId);
+    const indicator = document.getElementById(indicatorId);
+    const btn = document.getElementById(btnId);
+
+    output.innerHTML = '';
+    indicator.classList.add('pulsing');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="ti ti-loader" style="animation:spin 1s linear infinite;"></i> Generating…';
+
+    const style = document.createElement('style');
+    style.textContent = '@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }';
+    document.head.appendChild(style);
+
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          system: systemPrompt,
+          messages: [{ role: 'user', content: userMessage }],
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.error) {
+        output.textContent = `Error: ${data.error.message}`;
+      } else {
+        const text = data.content.map(b => b.text || '').join('');
+        output.textContent = text;
+      }
+    } catch (err) {
+      output.textContent = `Something went wrong: ${err.message}`;
+    } finally {
+      indicator.classList.remove('pulsing');
+      btn.disabled = false;
+    }
+  }
+
+  function generateDiscovery() {
+    const extra = document.getElementById('disc-input').value;
+    const system = `You are an expert Solutions Engineer helping prepare for a discovery call with a prospective client.
+Generate 6 sharp, insightful discovery questions tailored to the client context provided.
+Format as a numbered list. Each question should:
+- Uncover pain depth, business impact, or technical constraints
+- Be open-ended and conversational
+- Be specific to the client's industry, stack, and pain area
+- Not be generic or textbook-level
+No preamble. Output the numbered list only.`;
+    const user = `${buildContext()}${extra ? '\n\nAdditional focus: ' + extra : ''}`;
+    callClaude(system, user, 'disc-output', 'disc-indicator', 'disc-btn');
+    addActivity(`<strong>AI</strong> generated discovery questions for ${dealContext.company}`, 'ti-sparkles');
+  }
+
+  function generatePoC() {
+    const extra = document.getElementById('poc-input').value;
+    const system = `You are a senior Solutions Architect writing a PoC / PoV plan for a prospective client.
+Produce a structured PoC plan with these sections:
+1. Objective
+2. Scope (what's in / out)
+3. Success criteria (3-5 measurable outcomes)
+4. Timeline (week-by-week, 4-week plan)
+5. Roles & responsibilities
+6. Required access & resources
+7. Risk / assumptions
+Be specific to the client's tech stack and pain. Use plain text, not markdown. No preamble.`;
+    const user = `${buildContext()}${extra ? '\n\nAdditional constraints: ' + extra : ''}`;
+    callClaude(system, user, 'poc-output', 'poc-indicator', 'poc-btn');
+    addActivity(`<strong>AI</strong> generated PoC plan for ${dealContext.company}`, 'ti-sparkles');
+  }
+
+  function generateDemo() {
+    const extra = document.getElementById('demo-input').value;
+    const system = `You are an expert Solutions Engineer building a tailored demo script for a client meeting.
+Produce a structured demo script with:
+1. Opening (how to frame the demo to this client's world)
+2. Three "wow moments" — the key capabilities to highlight, each with what to say and what to show
+3. How to handle likely objections during the demo
+4. Closing and next steps
+Keep it practical, specific to the client's pain and stack. Plain text, no markdown, no preamble.`;
+    const user = `${buildContext()}${extra ? '\n\nFocus areas: ' + extra : ''}`;
+    callClaude(system, user, 'demo-output', 'demo-indicator', 'demo-btn');
+    addActivity(`<strong>AI</strong> built demo script for ${dealContext.company}`, 'ti-sparkles');
+  }
+
+  function generateProposal() {
+    const extra = document.getElementById('prop-input').value;
+    const system = `You are a senior Solutions Architect writing a technical proposal for a prospective client.
+Structure the proposal as:
+1. Executive summary
+2. Understanding of the client's challenge
+3. Proposed solution & architecture approach
+4. Key benefits and outcomes
+5. Implementation roadmap (high level)
+6. Why us — differentiators
+7. Recommended next steps
+Be specific, credible, and client-focused. Avoid generic filler. Plain text, no markdown, no preamble.`;
+    const user = `${buildContext()}${extra ? '\n\nAdditional context: ' + extra : ''}`;
+    callClaude(system, user, 'prop-output', 'prop-indicator', 'prop-btn');
+    addActivity(`<strong>AI</strong> generated proposal for ${dealContext.company}`, 'ti-sparkles');
+  }
+</script>
+</body>
+</html>
