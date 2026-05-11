@@ -26,7 +26,7 @@ PoC / PoV planner           Structured PoC brief with scope, measurable success 
 Demo builder                Client-contextualised demo script with "wow moments" tied to their exact pain 
 Proposal generator          Ready-to-send technical proposal specific to their industry challenges and ROI
 
-Every output is tailored to the specific client — not a template. The AI reads the client's pain, industry, and tech context and writes accordingly.
+Every output is tailored to the specific client, not a template. The AI reads the client's pain, industry, and tech context and writes accordingly.
 
 ## Why It Works
 Clients don't buy products. They buy solutions to their specific problems.
@@ -63,7 +63,7 @@ Save and open
 
  CRM integration (Salesforce, HubSpot)
  Deal health scoring with AI
- Playbook library — reuse winning deal patterns
+ Playbook library, reuse winning deal patterns
  Multi-deal workspace
  Team collaboration & activity feed
  Win/loss intelligence layer
