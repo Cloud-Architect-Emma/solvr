@@ -1,4 +1,4 @@
-# Solvr — AI-Powered Deal Execution Platform for SA & SE Teams
+# Solvr: AI-Powered Deal Execution Platform for SA & SE Teams
 
 Pre-sales cycles don't fall apart because of bad products. They fall apart because discovery is ad hoc, demos are generic, and Sales, SE, and SA are never truly aligned.
 
