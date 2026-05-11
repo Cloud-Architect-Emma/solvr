@@ -2,7 +2,7 @@
 
 Pre-sales cycles don't fall apart because of bad products. They fall apart because discovery is ad hoc, demos are generic, and Sales, SE, and SA are never truly aligned.
 
-Solvr is an AI-powered workspace that guides Sales, Solutions Engineers, and Solutions Architects through every stage of the pre-sales motion — from first discovery call to signed proposal.
+Solvr is an AI-powered workspace that guides Sales, Solutions Engineers, and Solutions Architects through every stage of the pre-sales motion, from first discovery call to signed proposal.
 
 Live demo: https://solvr-app.netlify.app
 
@@ -73,7 +73,7 @@ Save and open
 PRs welcome. If you work in pre-sales, SA, or SE, I especially want your feedback on what's missing or wrong. Open an issue or reach out directly.
 
 ** Built By **
-Emmanuela Opurum — Solutions Architect & Cloud Engineer, London 🇬🇧
+Emmanuela Opurum: Solutions Architect & Cloud Engineer, London 🇬🇧
 Building AI-native cloud tooling and contributing to open source in the CNCF ecosystem.
 
 LinkedIn:www.linkedin.com/in/cloud-architect-emma
@@ -81,4 +81,4 @@ GitHub:https://github.com/Cloud-Architect-Emma
 
 
 ** License **
-MIT — use it, fork it, build on it.
+MIT: use it, fork it, build on it.
